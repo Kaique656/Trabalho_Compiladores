@@ -1,4 +1,4 @@
-package interfaceDoComando;
+package interfaceDoComando;//teste
 
 import javax.swing.*;
 
