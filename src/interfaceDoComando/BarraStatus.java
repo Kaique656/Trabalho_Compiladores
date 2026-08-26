@@ -26,7 +26,7 @@ public class BarraStatus {
 
     /** Mostra pasta + nome do arquivo (usado por "abrir" e "salvar" quando é arquivo novo). */
     public void atualizar(String caminhoCompleto) {
-        // TODO: label.setText(caminhoCompleto);
+         label.setText(caminhoCompleto);
     }
 
     /** Apaga o texto e "esquece" o arquivo (usado no botão "novo"). */

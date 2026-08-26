@@ -1,6 +1,8 @@
 package interfaceDoComando;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Botoes {
 
@@ -16,6 +18,15 @@ public class Botoes {
         JButton abrir = new JButton("abrir[ctrl-o]");
         abrir.setBounds(10, 80, 300, 125);
 
+        abrir.addChangeListener( e -> {
+            JFileChooser jf = new JFileChooser();
+
+            int resultado = jf.showOpenDialog(null);
+
+            if(resultado == JFileChooser.APPROVE_OPTION) {
+                String caminho = jf.getSelectedFile().getAbsolutePath();
+            }
+        });
         return abrir;
         }
     public JButton salvar (){
@@ -53,6 +64,4 @@ public class Botoes {
         equipe.setBounds(10, 80, 300, 125);
         return equipe;
     }
-
-
 }
