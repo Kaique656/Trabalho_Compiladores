@@ -31,6 +31,6 @@ public class BarraStatus {
 
     /** Apaga o texto e "esquece" o arquivo (usado no botão "novo"). */
     public void limpar() {
-        // TODO: label.setText("");
+        TODO: label.setText("");
     }
 }
