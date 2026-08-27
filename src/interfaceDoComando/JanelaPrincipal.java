@@ -13,6 +13,7 @@ public class JanelaPrincipal {
         janela.setSize(1500, 800);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setLocationRelativeTo(null);
+        janela.setResizable(false);
         painel = new JPanel();
         painel.setLayout(null);
         janela.add(painel);
