@@ -54,13 +54,13 @@ public class Botoes {
     }
 
     public JButton compilar (){
-        JButton compilar = new JButton("F7");
+        JButton compilar = new JButton("Compilar [F7]");
         compilar.setBounds(10, 80, 300, 125);
         return compilar;
     }
 
     public JButton equipe (){
-        JButton equipe = new JButton("F1");
+        JButton equipe = new JButton("Equiope [F1]");
         equipe.setBounds(10, 80, 300, 125);
         return equipe;
     }
