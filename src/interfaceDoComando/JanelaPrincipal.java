@@ -6,6 +6,7 @@ public class JanelaPrincipal {
 
     private JFrame janela;
     private JPanel painel;
+    private   JTextArea mensagens;
 
     public JanelaPrincipal() {
 
@@ -32,7 +33,7 @@ public class JanelaPrincipal {
         JScrollPane scrollEditor = new JScrollPane(editor);
 
         // Área menor para mostrar mensagens
-        JTextArea mensagens = new JTextArea();
+         mensagens = new JTextArea();
         mensagens.setEditable(false);
         mensagens.setLineWrap(true);
 
@@ -53,11 +54,12 @@ public class JanelaPrincipal {
 
         // Adiciona o SplitPane ao painel
         painel.add(splitPane);
-
-        mensagens.append("Console de mensagens\n");
-        mensagens.append("> Sistema iniciado...\n");
-
+       
         janela.setVisible(true);
+    }
+
+    public String salvar() {
+        return "Arquivo salvo com sucesso";
     }
 
     public void adicionarBotoes() {
@@ -87,6 +89,10 @@ public class JanelaPrincipal {
 
         JButton equipe = b.equipe();
         equipe.setBounds(10, 430, 150, 50);
+
+        salvar.addActionListener(e -> {
+            mensagens.append("Arquivo Salvo com Sucesso");
+        });
 
         painel.add(novo);
         painel.add(abrir);
