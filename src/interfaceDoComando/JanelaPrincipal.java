@@ -6,22 +6,60 @@ public class JanelaPrincipal {
 
     private JFrame janela;
     private JPanel painel;
+    private   JTextArea mensagens;
 
     public JanelaPrincipal() {
 
+        // Janela principal
         janela = new JFrame("Interface do Comando");
         janela.setSize(1500, 800);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setLocationRelativeTo(null);
+        janela.setResizable(false);
 
+        // Painel principal
         painel = new JPanel();
         painel.setLayout(null);
 
         janela.add(painel);
 
+        // Adiciona os botões da esquerda
         adicionarBotoes();
 
+        // Área grande para escrever código
+        JTextArea editor = new JTextArea();
+        editor.setLineWrap(false);
+
+        JScrollPane scrollEditor = new JScrollPane(editor);
+
+        // Área menor para mostrar mensagens
+         mensagens = new JTextArea();
+        mensagens.setEditable(false);
+        mensagens.setLineWrap(true);
+
+        JScrollPane scrollMensagens = new JScrollPane(mensagens);
+
+        // Divide a área direita em duas
+        JSplitPane splitPane = new JSplitPane(
+                JSplitPane.VERTICAL_SPLIT,
+                scrollEditor,
+                scrollMensagens
+        );
+
+        // Posição e tamanho da área direita
+        splitPane.setBounds(180, 10, 1280, 730);
+
+        // Posição inicial da divisão
+        splitPane.setDividerLocation(550);
+
+        // Adiciona o SplitPane ao painel
+        painel.add(splitPane);
+       
         janela.setVisible(true);
+    }
+
+    public String salvar() {
+        return "Arquivo salvo com sucesso";
     }
 
     public void adicionarBotoes() {
@@ -51,6 +89,10 @@ public class JanelaPrincipal {
 
         JButton equipe = b.equipe();
         equipe.setBounds(10, 430, 150, 50);
+
+        salvar.addActionListener(e -> {
+            mensagens.append("Arquivo Salvo com Sucesso");
+        });
 
         painel.add(novo);
         painel.add(abrir);

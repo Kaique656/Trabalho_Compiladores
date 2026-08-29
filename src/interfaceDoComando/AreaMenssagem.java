@@ -27,8 +27,8 @@ public class AreaMenssagem {
     }
 
     /** Limpa e escreve uma nova mensagem (usado por compilar, equipe, novo, abrir, salvar). */
-    public void mostrarMensagem(String texto) {
-        // TODO: textArea.setText(texto);
+    public String mostrarMensagem(String texto) {
+       return texto;
     }
 
     /** Apaga o conteúdo (usado no botão "novo" e sempre que abrir/salvar/compilar rodar). */

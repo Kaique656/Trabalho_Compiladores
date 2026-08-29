@@ -1,6 +1,7 @@
 package interfaceDoComando;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
 /**
@@ -36,6 +37,14 @@ public class AcoesArquivo {
     /** Botão "abrir" [ctrl-o] — item 11. */
     public void abrir() {
         // TODO: JFileChooser com filtro .txt
+
+        JFileChooser jf = new JFileChooser();
+
+        FileNameExtensionFilter fileNameExtensionFilter =
+                new FileNameExtensionFilter("Arquivos de texto (*.txt)\", \"txt");
+
+
+
         // TODO: if (usuário selecionou um arquivo) {
         //           ler conteúdo do arquivo -> editor.setConteudo(texto);
         //           areaMensagem.limpar();
