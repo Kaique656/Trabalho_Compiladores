@@ -1,4 +1,4 @@
-package interfaceDoComando;//teste
+package interfaceDoComando;
 
 import javax.swing.*;
 
@@ -16,12 +16,15 @@ public class Editor {
     private JScrollPane scrollPane;
 
     public Editor() {
-        // TODO: instanciar textArea, aplicar new NumberedBorder() como borda
-        // TODO: colocar dentro de um JScrollPane com
-        //       setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS)
-        //       setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS)
-    }
+    // instancia a JTextArea e aplica a numeração de linha como borda
+    textArea = new JTextArea();
+    textArea.setBorder(new NumberedBorder());
 
+    // coloca dentro do JScrollPane com as scrollbars sempre visíveis
+    scrollPane = new JScrollPane(textArea);
+    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+}
     /** Devolve o componente pronto (com scroll) pra JanelaPrincipal encaixar no layout. */
     public JScrollPane getComponente() {
         return scrollPane;
@@ -33,18 +36,17 @@ public class Editor {
     }
 
     /** Apaga todo o conteúdo do editor (usado no botão "novo"). */
-    public void limpar() {
-        // TODO: textArea.setText("");
-    }
+public void limpar() {
+    textArea.setText("");
+}
 
-    /** Coloca um texto no editor (usado no botão "abrir"). */
-    public void setConteudo(String texto) {
-        // TODO: textArea.setText(texto);
-    }
+/** Coloca um texto no editor (usado no botão "abrir"). */
+public void setConteudo(String texto) {
+    textArea.setText(texto);
+}
 
-    /** Devolve o texto atual do editor (usado no botão "salvar"). */
-    public String getConteudo() {
-        // TODO: return textArea.getText();
-        return null;
-    }
+/** Devolve o texto atual do editor (usado no botão "salvar"). */
+public String getConteudo() {
+    return textArea.getText();
+}
 }
