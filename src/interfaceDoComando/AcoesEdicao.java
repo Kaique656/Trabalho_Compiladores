@@ -1,8 +1,5 @@
 package interfaceDoComando;
 
-import javax.swing.*;
-import javax.swing.text.DefaultEditorKit;
-
 /**
  * RESPONSÁVEL: Gustavo
  *
@@ -19,16 +16,16 @@ public class AcoesEdicao {
 
     /** Botão "copiar" [ctrl-c]. */
     public void copiar() {
-        // TODO: editor.getTextArea().copy();
+        editor.getTextArea().copy();
     }
 
     /** Botão "colar" [ctrl-v]. */
     public void colar() {
-        // TODO: editor.getTextArea().paste();
+        editor.getTextArea().paste();
     }
 
     /** Botão "recortar" [ctrl-x]. */
     public void recortar() {
-        // TODO: editor.getTextArea().cut();
+        editor.getTextArea().cut();
     }
 }

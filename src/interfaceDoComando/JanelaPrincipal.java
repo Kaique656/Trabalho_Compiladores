@@ -1,5 +1,6 @@
 package interfaceDoComando;
 
+import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 /**
@@ -46,8 +47,7 @@ public class JanelaPrincipal {
         JSplitPane splitPane = new JSplitPane(
                 JSplitPane.VERTICAL_SPLIT,
                 editor.getComponente(),
-                areaMensagem.getComponente()
-        );
+                areaMensagem.getComponente());
         splitPane.setBounds(180, 10, 1300, 730); // ajustar conforme necessário
         splitPane.setDividerLocation(550);
         painel.add(splitPane);
@@ -115,11 +115,39 @@ public class JanelaPrincipal {
         painel.add(equipe);
 
         // TODO (Kaique): adicionar ícone em cada botão (item 9 exige
-        // ícone + nome completo + atalho). Ex: novo.setIcon(new ImageIcon("caminho/icone.png"));
+        // ícone + nome completo + atalho). Ex: novo.setIcon(new
+        // ImageIcon("caminho/icone.png"));
 
-        // TODO (Gustavo): configurar os atalhos de teclado globais (ctrl-n, ctrl-o,
-        // ctrl-s, ctrl-c, ctrl-v, ctrl-x, F7, F1) via InputMap/ActionMap, já que
-        // Swing puro não tem "accelerator" fora de menu.
+        // Atalhos de teclado (itens 10 a 15: "ou a tecla de atalho correspondente")
+        configurarAtalhos(acoesArquivo, acoesEdicao, acoesCompilador);
+    }
+
+    private void configurarAtalhos(AcoesArquivo acoesArquivo,
+            AcoesEdicao acoesEdicao,
+            AcoesCompilador acoesCompilador) {
+
+        atalho("control N", "novo", acoesArquivo::novo);
+        atalho("control O", "abrir", acoesArquivo::abrir);
+        atalho("control S", "salvar", acoesArquivo::salvar);
+        atalho("control C", "copiar", acoesEdicao::copiar);
+        atalho("control V", "colar", acoesEdicao::colar);
+        atalho("control X", "recortar", acoesEdicao::recortar);
+        atalho("F7", "compilar", acoesCompilador::compilar);
+        atalho("F1", "equipe", acoesCompilador::equipe);
+    }
+
+    private void atalho(String tecla, String nome, Runnable acao) {
+        JRootPane raiz = janela.getRootPane();
+
+        raiz.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(tecla), nome);
+
+        raiz.getActionMap().put(nome, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                acao.run();
+            }
+        });
     }
 
     public static void main(String[] args) {
