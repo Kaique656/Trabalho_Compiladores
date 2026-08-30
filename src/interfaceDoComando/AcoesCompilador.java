@@ -15,12 +15,15 @@ public class AcoesCompilador {
 
     /** Botão "compilar" [F7] — item 14. */
     public void compilar() {
+        // mostrarMensagem usa setText, então a mensagem anterior é substituída
         areaMensagem.mostrarMensagem("compilação de programas ainda não foi implementada");
     }
 
     /** Botão "equipe" [F1] — item 15. */
     public void equipe() {
-        // TODO: trocar pelos nomes reais da equipe
-        areaMensagem.mostrarMensagem("Equipe: Amanda, Kaique, Gustavo");
+        areaMensagem.mostrarMensagem(
+                "Amanda Eyng\n"
+                + "Kaique Cunha Mori\n"
+                + "Gustavo Henrique Luiz");
     }
 }
