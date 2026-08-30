@@ -40,6 +40,15 @@ public class JanelaPrincipal {
         areaMensagem = new AreaMenssagem();
         barraStatus = new BarraStatus();
 
+        // O JTextArea tem atalhos internos próprios que conflitam com os
+        // nossos (ex: Ctrl+N move o cursor para a linha de baixo). Sem isso,
+        // os atalhos ctrl-n/ctrl-o/ctrl-s não funcionam quando o cursor está
+        // dentro do editor, que é a situação mais comum.
+        JTextArea areaTexto = editor.getTextArea();
+        areaTexto.getInputMap().put(KeyStroke.getKeyStroke("control N"), "none");
+        areaTexto.getInputMap().put(KeyStroke.getKeyStroke("control O"), "none");
+        areaTexto.getInputMap().put(KeyStroke.getKeyStroke("control S"), "none");
+
         // Botões da esquerda (toolbar)
         adicionarBotoes();
 
@@ -48,13 +57,17 @@ public class JanelaPrincipal {
                 JSplitPane.VERTICAL_SPLIT,
                 editor.getComponente(),
                 areaMensagem.getComponente());
-        splitPane.setBounds(180, 10, 1300, 730); // ajustar conforme necessário
-        splitPane.setDividerLocation(550);
+
+        // Deixa uma margem de folga em relação ao setSize(1500, 800), já que
+        // a barra de título da janela também ocupa espaço vertical -- sem essa
+        // folga, a barra de status ficava cortada na parte de baixo.
+        splitPane.setBounds(180, 10, 1300, 670);
+        splitPane.setDividerLocation(400);
         painel.add(splitPane);
 
         // Barra de status embaixo (item 8)
         JPanel statusComponente = barraStatus.getComponente();
-        statusComponente.setBounds(180, 745, 1300, 25); // largura máxima visível
+        statusComponente.setBounds(180, 690, 1300, 25); // largura máxima visível
         painel.add(statusComponente);
 
         janela.setVisible(true);
@@ -114,10 +127,6 @@ public class JanelaPrincipal {
         painel.add(compilar);
         painel.add(equipe);
 
-        // TODO (Kaique): adicionar ícone em cada botão (item 9 exige
-        // ícone + nome completo + atalho). Ex: novo.setIcon(new
-        // ImageIcon("caminho/icone.png"));
-
         // Atalhos de teclado (itens 10 a 15: "ou a tecla de atalho correspondente")
         configurarAtalhos(acoesArquivo, acoesEdicao, acoesCompilador);
     }
@@ -125,7 +134,6 @@ public class JanelaPrincipal {
     private void configurarAtalhos(AcoesArquivo acoesArquivo,
             AcoesEdicao acoesEdicao,
             AcoesCompilador acoesCompilador) {
-
         atalho("control N", "novo", acoesArquivo::novo);
         atalho("control O", "abrir", acoesArquivo::abrir);
         atalho("control S", "salvar", acoesArquivo::salvar);
@@ -138,10 +146,8 @@ public class JanelaPrincipal {
 
     private void atalho(String tecla, String nome, Runnable acao) {
         JRootPane raiz = janela.getRootPane();
-
         raiz.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke(tecla), nome);
-
         raiz.getActionMap().put(nome, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
