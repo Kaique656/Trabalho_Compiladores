@@ -105,7 +105,7 @@ public class JanelaPrincipal {
         // Instancia as classes de ação passando os componentes que elas precisam mexer
         AcoesArquivo acoesArquivo = new AcoesArquivo(editor, areaMensagem, barraStatus);
         AcoesEdicao acoesEdicao = new AcoesEdicao(editor);
-        AcoesCompilador acoesCompilador = new AcoesCompilador(areaMensagem);
+        AcoesCompilador acoesCompilador = new AcoesCompilador(editor, areaMensagem);
 
         // Cada botão só chama o método da classe responsável -- a JanelaPrincipal
         // não decide o que a ação faz, só aciona.
